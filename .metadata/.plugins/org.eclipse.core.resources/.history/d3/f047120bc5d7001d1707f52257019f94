@@ -1,0 +1,158 @@
+package com.sk;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class test {
+ public static void main(String[] args) {
+	// ArrayList<Integer>list= new ArrayList<Integer>();
+	 List<Integer> list = List.of(101,102,103,104,105);
+	 List<String> list1 = List.of("ramesha","suresha","rada","ram","raj","rampa");
+	 List<Integer> list2 = List.of(101,102,103,104,105,102,103,104,105);
+	 char targetChar='s';
+	String str="shushanth";
+	//IntStream IntegerStream= IntStream.of(97,96,95,94,92);
+	
+	 List<Integer> list3 = List.of(10,12,13,14,105,106);
+	
+	Integer [][] arrays = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	 
+		System.out.println("---------------------------------");
+		 
+	  Optional<Integer> min = list.stream().min((a,b)->a.compareTo(b));
+	 System.out.println(min);
+			 
+	 
+	  Optional<Integer> max = list.stream().max((a,b)->a.compareTo(b));
+	  System.out.println(max);
+	  
+	  
+	System.out.println("---------------------------------");
+	  
+	  
+	//Java 8 program to Count Strings whose length is greater than 3 in List?
+
+	  long count  = list1.stream().filter(m->m.length()>3).count();
+	  System.out.println(count);
+	  
+	  System.out.println("---------------------------------");
+	  
+	  
+	  //Java 8 program to multiply 3 to all element in list and print the list?
+	  List<Integer> collect = list.stream().map(m->m*3).collect(Collectors.toList());
+      System.out.println(collect);
+      
+      System.out.println("---------------------------------");
+      
+      //Java 8 program to remove the duplicate elements from the list?
+      List<Integer> collect2 = list2.stream().distinct().collect(Collectors.toList());
+      System.out.println(collect2);
+
+      System.out.println("---------------------------------");
+      
+      //Find the last element of a Stream in Java
+       Optional<Integer> reduce = list.stream().reduce((a,b)->b);
+       System.out.println(reduce);
+       
+       System.out.println("---------------------------------");
+      // Count occurrence of a given character in a string using Stream API in Java
+      long count2 = str.chars().filter(ch -> ch == targetChar).count();
+       System.out.println(count2);
+       
+       System.out.println("---------------------------------");
+
+//     Flatten a Stream of Arrays in Java using forEach loop
+//	
+//	    Input: arr[][] = {{ 1, 2 }, { 3, 4, 5, 6 }, { 7, 8, 9 }}
+
+
+       
+       List<Integer> collect4 = Arrays.stream(arrays).flatMap(x->Arrays.stream(x)).collect(Collectors.toList());
+       //List<Integer> collect4 = Arrays.stream(arr).flatMap(t -> Arrays.stream(t)).collect(Collectors.toList());
+       
+
+       System.out.println(collect4);
+       
+       
+       System.out.println("---------------------------------");
+       //Program to convert IntStream to String in Java
+       IntStream of = IntStream.of(97, 98);
+       String string = of.collect(StringBuilder::new,
+        StringBuilder::appendCodePoint,
+       StringBuilder::append)
+       .toString();
+       System.out.println(string);
+      
+       System.out.println("---------------------------------");
+      // Write a Java 8 program to square the list of numbers and then filter out the numbers greater than 100 and 
+       //then find the average of the remaining numbers?
+
+       double double1 = list3.stream().map( y -> y* 2).filter(y -> y<100).mapToInt(y ->y).average().getAsDouble();
+      System.out.println(double1);
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      public static void main(String[] args) {
+
+  		List<String> words = Arrays.asList("hi", "hi", "carrot", "date", "eggplant");
+  		String word1 = "Hello java";
+  		int[] numbers = { 1, 5, 3, 8, 4, 2, 1, 5, 2 };
+  		Integer arr[][] = { { 1, 2 }, { 3, 4, 5, 6 }, { 7, 8, 9 } };
+  		List<Integer> number2 = Arrays.asList(1, 5, 1, 5, 4, 4);
+  		IntStream of = IntStream.of(72,97,105, 32, 78, 97, 97, 118, 101, 110 );	//IntStream
+  		Character value = 'a'; // count of repeated character in string
+
+  		System.out.println("------------------------------------ Program 1 -----------------------------------");
+  		System.out.println(Arrays.stream(numbers).min().getAsInt());
+  		System.out.println(Arrays.stream(numbers).max().getAsInt());
+
+  		System.out.println("------------------------------------ Program 2 -----------------------------------");
+  		words.stream().filter(s -> s.length() > 3).forEach(System.out::println);
+
+  		System.out.println("------------------------------------ Program 3 -----------------------------------");
+  		Arrays.stream(numbers).map(x -> x * 3).forEach(System.out::println);
+
+  		System.out.println("------------------------------------ Program 4 -----------------------------------");
+  		number2.stream().distinct().collect(Collectors.toList()).forEach(System.out::println);
+
+  		System.out.println("------------------------------------ Program 5 -----------------------------------");
+  		String orElseThrow = words.stream().reduce((a, b) -> b).orElseThrow(null);
+  		System.out.println(orElseThrow);
+
+  		System.out.println("------------------------------------ Program 6 -----------------------------------");
+  		long count = word1.chars().filter(c -> c == value).count();
+  		System.out.println("Count of " + value + " is : " + count);
+
+  		System.out.println("------------------------------------ Program 7 -----------------------------------");
+  		Stream.of(arr).flatMap(Arrays::stream).forEach(System.out::print);
+
+  		System.out.println("\n------------------------------------ Program 8 -----------------------------------");
+  		String collect = of.mapToObj(s -> (char) s).map(x->x.toString()).collect(Collectors.joining());
+  		System.out.println(collect);
+
+  		System.out.println("------------------------------------ Program 9 -----------------------------------");
+  		double average = number2.stream().map(x -> x * x).filter(f -> f < 100).mapToDouble(m -> m).average()
+  				.orElse(0.0);
+  		System.out.println("Average : "+ average);
+  	}
+  }
+
+      
+      
+      
+      
+      
+      
+      
+}
+}
+
